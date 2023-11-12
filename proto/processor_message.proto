@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+message CPU {
+  string brand = 1;
+  string name = 2;
+  uint32  num_cores = 3;
+  uint32  num_threads = 4;
+  uint32  max_freq = 5;
+  uint32  min_freq = 6;
+}
+
