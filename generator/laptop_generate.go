@@ -3,28 +3,28 @@ package generator
 import (
 	"github.com/google/uuid"
 	"google.golang.org/protobuf/types/known/timestamppb"
-	"grpc_fundamental/proto"
 	"math"
 	"math/rand"
+	pb "pb/proto"
 	"time"
 )
 
-func NewLaptop() *grpc_fundamental.Laptop {
-	return &grpc_fundamental.Laptop{
+func NewLaptop() *pb.Laptop {
+	return &pb.Laptop{
 		Id:    uuid.New().String(),
 		Brand: "Asus",
 		Name:  "ROG",
 		Cpu:   NewCpu(),
 		Ram:   16,
 		Gpu:   NewGpu(),
-		Storage: []*grpc_fundamental.Storage{
+		Storage: []*pb.Storage{
 			NewStorage(),
 		},
 		Screen: NewMonitor(),
-		Weight: &grpc_fundamental.Laptop_WeightKg{
+		Weight: &pb.Laptop_WeightKg{
 			WeightKg: rand.Float32() * 5,
 		},
-		Price: &grpc_fundamental.Laptop_PriceUsd{
+		Price: &pb.Laptop_PriceUsd{
 			PriceUsd: uint32(int(math.Round(rand.Float64() * 3000))),
 		},
 		RelaseDate:    timestamppb.New(time.Now()),

@@ -5,21 +5,23 @@ import (
 	"errors"
 	"fmt"
 	"github.com/google/uuid"
-	"grpc_fundamental/proto"
+	pb "pb/proto"
 )
 
 type LaptopServer struct {
 	Store LaptopStore
+	pb.UnimplementedLaptopServiceServer
 }
 
 func NewLaptopServer(store LaptopStore) *LaptopServer {
 	return &LaptopServer{
-		store,
+		Store: store,
 	}
 }
 
 func (server *LaptopServer) CreateLaptop(
-	ctx context.Context, req *grpc_fundamental.CreateLaptopRequest) (*grpc_fundamental.CreateLaptopResponse, error) {
+	ctx context.Context,
+	req *pb.CreateLaptopRequest) (*pb.CreateLaptopResponse, error) {
 	laptop := req.GetLaptop()
 	fmt.Println("Received a create-laptop request with name: ", laptop.Name)
 	if len(laptop.Id) == 0 {
@@ -39,7 +41,7 @@ func (server *LaptopServer) CreateLaptop(
 	}
 
 	fmt.Println("Saved laptop with id: ", laptop.Id)
-	return &grpc_fundamental.CreateLaptopResponse{
+	return &pb.CreateLaptopResponse{
 		Id: laptop.Id,
 	}, nil
 }

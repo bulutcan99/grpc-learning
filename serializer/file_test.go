@@ -3,8 +3,8 @@ package serializer
 import (
 	"github.com/stretchr/testify/require"
 	"google.golang.org/protobuf/proto"
-	"grpc_fundamental/generator"
-	"grpc_fundamental/proto"
+	"pb/generator"
+	"pb/proto"
 	"testing"
 )
 
@@ -25,7 +25,7 @@ func TestReadProtobufFromBinaryFile(t *testing.T) {
 	err := WriteProtobufToBinaryFile(newLaptop, binaryFile)
 	require.NoError(t, err)
 
-	laptop := &grpc_fundamental.Laptop{}
+	laptop := &pb.Laptop{}
 	err = ReadProtobufFromBinaryFile(laptop, binaryFile)
 	require.NoError(t, err)
 	require.True(t, proto.Equal(newLaptop, laptop))
@@ -39,7 +39,7 @@ func TestWriteProtobufToJSONFile(t *testing.T) {
 	err := WriteProtobufToBinaryFile(laptopSample, binaryFile)
 	require.NoError(t, err)
 
-	laptopSample2 := &grpc_fundamental.Laptop{}
+	laptopSample2 := &pb.Laptop{}
 	err = ReadProtobufFromBinaryFile(laptopSample2, binaryFile)
 	require.NoError(t, err)
 	require.True(t, proto.Equal(laptopSample, laptopSample2))

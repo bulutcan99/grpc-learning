@@ -1,16 +1,12 @@
 package generator
 
-import (
-	"grpc_fundamental/proto"
-)
-
-func NewGpu() *grpc_fundamental.Gpu {
-	return &grpc_fundamental.Gpu{
+func NewGpu() *pb.Gpu {
+	return &pb.Gpu{
 		Brand: "Nvidia",
 		Name:  "GTX 1080",
-		Memory: &grpc_fundamental.Memory{
+		Memory: &pb.Memory{
 			Value: 8,
-			Unit:  grpc_fundamental.Memory_GIGABYTE,
+			Unit:  pb.Memory_GIGABYTE,
 		},
 		MaxFreq: 2000,
 		MinFreq: 1000,

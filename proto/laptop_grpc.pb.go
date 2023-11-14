@@ -4,7 +4,7 @@
 // - protoc             v4.24.3
 // source: proto/laptop.proto
 
-package grpc_fundamental
+package pb
 
 import (
 	context "context"

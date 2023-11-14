@@ -2,7 +2,7 @@ syntax="proto3";
 
 package main;
 
-option go_package = "./grpc_fundamental";
+option go_package = "./pb";
 
 import "google/protobuf/timestamp.proto";
 

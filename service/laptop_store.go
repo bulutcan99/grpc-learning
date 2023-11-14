@@ -3,7 +3,6 @@ package service
 import (
 	"errors"
 	"github.com/jinzhu/copier"
-	"grpc_fundamental/proto"
 	"sync"
 )
 
@@ -12,21 +11,21 @@ var (
 )
 
 type LaptopStore interface {
-	Save(laptop *grpc_fundamental.Laptop) error
+	Save(laptop *pb.Laptop) error
 }
 
 type InMemoryLaptopStore struct {
 	mutex   sync.RWMutex
-	laptops map[string]*grpc_fundamental.Laptop
+	laptops map[string]*pb.Laptop
 }
 
 func NewMapLaptopStore() *InMemoryLaptopStore {
 	return &InMemoryLaptopStore{
-		laptops: make(map[string]*grpc_fundamental.Laptop),
+		laptops: make(map[string]*pb.Laptop),
 	}
 }
 
-func (store *InMemoryLaptopStore) Save(laptop *grpc_fundamental.Laptop) error {
+func (store *InMemoryLaptopStore) Save(laptop *pb.Laptop) error {
 	store.mutex.Lock()
 	defer store.mutex.Unlock()
 
@@ -34,7 +33,7 @@ func (store *InMemoryLaptopStore) Save(laptop *grpc_fundamental.Laptop) error {
 		return ErrAlreadyExist
 	}
 
-	another := &grpc_fundamental.Laptop{}
+	another := &pb.Laptop{}
 	err := copier.Copy(another, laptop)
 	if err != nil {
 		return err

@@ -1,12 +1,11 @@
 package generator
 
 import (
-	"grpc_fundamental/proto"
 	"math/rand"
 )
 
-func NewCpu() *grpc_fundamental.Cpu {
-	return &grpc_fundamental.Cpu{
+func NewCpu() *pb.Cpu {
+	return &pb.Cpu{
 		Brand:      RandomCpuBrand(),
 		Name:       RandomCpuName(),
 		NumCores:   RandomCpuCore(),

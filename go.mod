@@ -1,4 +1,4 @@
-module grpc_fundamental
+module pb
 
 go 1.21.3
 
