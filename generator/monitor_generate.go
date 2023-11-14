@@ -1,7 +1,7 @@
 package generator
 
 import (
-	"grpc_fundamental/src/grpc_fundamental"
+	"grpc_fundamental/proto"
 )
 
 func NewMonitor() *grpc_fundamental.Screen {

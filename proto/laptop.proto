@@ -68,22 +68,35 @@ message Screen {
 }
 
 message Laptop {
-  string brand = 1;
-  string name = 2;
-  Cpu cpu = 3;
-  Gpu gpu = 4;
-  repeated Storage storage = 5;
-  Screen screen = 6;
-  uint32 ram = 7;
+  string id = 1;
+  string brand = 2;
+  string name = 3;
+  Cpu cpu = 4;
+  Gpu gpu = 5;
+  repeated Storage storage = 6;
+  Screen screen = 7;
+  uint32 ram = 8;
   oneof weight {
-    float weight_kg = 8;
-    float weight_lbs = 9;
+    float weight_kg = 9;
+    float weight_lbs = 10;
   }
   oneof price {
-    uint32  price_usd = 10;
-    uint32  price_eur = 11;
+    uint32  price_usd = 11;
+    uint32  price_eur = 12;
   }
-  google.protobuf.Timestamp relase_date = 12;
-  bool has_camera = 13;
-  bool has_microphone = 14;
+  google.protobuf.Timestamp relase_date = 13;
+  bool has_camera = 14;
+  bool has_microphone = 15;
+}
+
+message CreateLaptopRequest {
+  Laptop laptop = 1;
+}
+
+message CreateLaptopResponse {
+  string id = 1;
+}
+
+service LaptopService {
+  rpc CreateLaptop(CreateLaptopRequest) returns (CreateLaptopResponse) {};
 }

@@ -1,8 +1,13 @@
 generate:
-	protoc -I src/ --go_out=src/ src/protos/*.proto;
+	protoc -I. --go_out=. --go_opt=paths=source_relative \
+        --go-grpc_out=. --go-grpc_opt=paths=source_relative \
+        proto/laptop.proto
 
 clean:
-	rm src/grpc_fundamental/*.pb.go;
+	rm proto/*.pb.go;
 
 run:
 	go run main.go
+
+test:
+	go test -cover -race ./...
